@@ -16,14 +16,24 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     unsigned int nProofOfWorkLimit = UintToArith256(params.powLimit).GetCompact();
 
     // Only change once per difficulty adjustment interval
-    if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
+    uint64_t diff_adjust = params.nPowTargetTimespan / params.nPowTargetSpacing;
+    if(pindexLast->nHeight >= params.nForkDiffUpdateCY) diff_adjust = params.nPowTargetTimespan / params.nPowTargetSpacingCY;
+
+    //if ((pindexLast->nHeight+1) % params.DifficultyAdjustmentInterval() != 0)
+    if ((pindexLast->nHeight+1) % diff_adjust != 0)
     {
-        if (params.fPowAllowMinDifficultyBlocks)
+
+        //if (params.fPowAllowMinDifficultyBlocks)
+        if (params.fPowAllowMinDifficultyBlocks && pindexLast->nHeight+1 >= params.nForkDiffUpdateCY)
         {
+
             // Special difficulty rule for testnet:
             // If the new block's timestamp is more than 2* 10 minutes
             // then allow mining of a min-difficulty block.
-            if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
+            int spacing = params.nPowTargetSpacing*2;
+            if( pindexLast->nHeight >= params.nForkHeightCY) spacing = params.nPowTargetSpacingCY*2;
+
+            if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + spacing)
                 return nProofOfWorkLimit;
             else
             {
