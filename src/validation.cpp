@@ -1273,6 +1273,18 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     CAmount nSubsidy = 50 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
+	
+    if(nHeight >= consensusParams.RewardHeight)
+    {
+        if(nHeight >= consensusParams.RewardHeight && nHeight < consensusParams.RewardHeight + 99000) nSubsidy = 1000000 * COIN ;
+        if(nHeight >= consensusParams.RewardHeight + 100000 && nHeight < consensusParams.RewardHeight +  145000) nSubsidy = 500000 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 145000 && nHeight < consensusParams.RewardHeight +  200000) nSubsidy = 250000 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 200000 && nHeight < consensusParams.RewardHeight +  300000) nSubsidy = 125000 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 300000 && nHeight < consensusParams.RewardHeight +  400000) nSubsidy = 62500 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 400000 && nHeight < consensusParams.RewardHeight +  500000) nSubsidy = 31250 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 500000 && nHeight < consensusParams.RewardHeight +  600000) nSubsidy = 15625 * COIN;
+        if(nHeight >= consensusParams.RewardHeight + 600000 ) nSubsidy = 10000 * COIN;
+    }	
     return nSubsidy;
 }
 
