@@ -1842,6 +1842,8 @@ static RPCHelpMan getchaintxstats()
     const CBlockIndex* pindex;
     int blockcount = 30 * 24 * 60 * 60 / Params().GetConsensus().nPowTargetSpacing; // By default: 1 month
 
+    if(pindex->nHeight >= Params().GetConsensus().nForkHeightCY) blockcount = 30 * 24 * 60 * 60 / Params().GetConsensus().nPowTargetSpacingCY;
+            
     if (request.params[1].isNull()) {
         LOCK(cs_main);
         pindex = ::ChainActive().Tip();
