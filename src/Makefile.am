@@ -88,22 +88,22 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += cyberyend
+  bin_PROGRAMS += litecoind
 endif
 
 if BUILD_BITCOIN_NODE
-  bin_PROGRAMS += cyberyen-node
+  bin_PROGRAMS += litecoin-node
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += cyberyen-cli
+  bin_PROGRAMS += litecoin-cli
 endif
 if BUILD_BITCOIN_TX
-  bin_PROGRAMS += cyberyen-tx
+  bin_PROGRAMS += litecoin-tx
 endif
 if ENABLE_WALLET
 if BUILD_BITCOIN_WALLET
-  bin_PROGRAMS += cyberyen-wallet
+  bin_PROGRAMS += litecoin-wallet
 endif
 endif
 
