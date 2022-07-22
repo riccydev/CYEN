@@ -20,11 +20,11 @@ if test "x$PKG_CONFIG" = x; then
   AC_MSG_ERROR([pkg-config not found])
 fi
 
-BITCOIN_DAEMON_NAME=litecoind
-BITCOIN_GUI_NAME=litecoin-qt
-BITCOIN_CLI_NAME=litecoin-cli
-BITCOIN_TX_NAME=litecoin-tx
-BITCOIN_WALLET_TOOL_NAME=litecoin-wallet
+BITCOIN_DAEMON_NAME=cyberyend
+BITCOIN_GUI_NAME=cyberyen-qt
+BITCOIN_CLI_NAME=cyberyen-cli
+BITCOIN_TX_NAME=cyberyen-tx
+BITCOIN_WALLET_TOOL_NAME=cyberyen-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
