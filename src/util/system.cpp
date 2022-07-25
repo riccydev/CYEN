@@ -665,7 +665,7 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // macOS
-    return pathRet / "Library/Application Support/Litecoin";
+    return pathRet / "Library/Application Support/Cyberyen";
 #else
     // Unix-like
     return pathRet / ".cyberyen";
